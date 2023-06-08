@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server">
+	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Magnum Wings</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel='stylesheet' href='css/style.css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+    <link href="css/App.css" rel="stylesheet" />
+	<link rel="shortcut icon " href="images/logo.jpg" type="image/gif">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/slide_to_unlock.js"></script>
+	<script src="js/slide-to-takeoff.js"></script>
+
+</head>
+
+<body>
+	
+	<div class="context" id="context">
+		<div class="home-screen" id="home-screen">
+
+			<div class="container">
+				<div class="col-md-12 text-center">
+					<h3 class="animate-charcter"> WELCOME </h3>
+				</div>
+				<img id="l" src="images/logo.jpg" alt="Magnum wings">
+			</div>
+		
+			<div class="main-image">
+				<model-viewer src="scene.gltf" shadow-intensity="1" camera-controls auto-rotate ar>
+				</model-viewer>
+			</div>
+		
+			<div id="slide-to-unlock">
+				<div id="page-wrap">
+					<div id="well">
+						<h2 id="slider-heading"><strong id="slider"><img src="images/arrow.png" alt="" id="arrow-img" class="animate pop"></strong><span id="text"> Slide to Unlock </span></h2>
+					</div>
+				</div>
+			</div>
+			<div id="full-button">
+				<button id="full"  value="FullScreen"></button>
+			</div>
+			</div>
+		</div>
+	
+		<div class="slide-2" id="slide-2">
+	
+			<div id="container2">
+	
+				<div id="MyMapLOC">  
+
+				</div>  
+				<div id="MapRoute"> 
+
+				</div>
+	
+				<div id="pimg">
+		
+					<img src="images/pimg.jpg" width="300px" alt="" id="p-img">		
+					<p id="arial" style="z-index: 40;"></p>
+					
+				</div>
+	
+				<div id="inputs">
+	
+					<div id="outer-legends">
+						<div id="legends">
+							<div id="direction">
+								<p id="p1">NORTH</p>
+								<p id="p2">Direction</p>
+							</div>
+
+							<hr id="hr">
+
+							<div id="direction">
+								<div id="inner-direction">
+									<p id="p1">0</p> 
+									<p id="p2">METERS</p>
+								</div>
+								<p id="p2">Altitude</p>
+							</div>
+
+							<hr id="hr">
+
+							<div id="direction">
+								<div id="inner-direction">
+									<p id="p1">0</p> 
+									<p id="p2">KM/H</p>
+								</div>
+								<p id="p2">Speed</p>
+							</div>
+
+							<hr id="hr">
+
+							<div id="direction2">
+								<div id="inner-direction2">
+									<p id="p1">100%</p>
+									<p id="p2">Battery</p>
+								</div>
+								<img src="images/battery.jpg" alt="" id="battery">
+							</div>
+						</div>
+					</div>
+
+					<div class="search-form" id="search-form">
+						<input type="search" value="" onfocus="displayIcon()" onblur="hideIcon()" placeholder="ENTER DESTINATION" class="search-input" id="destination-box" onsearch="SearchRoute()">
+						<button type="submit" onclick="SearchRoute()" class="search-button"><i class="fa fa-search"></i></button>
+						<span id="hr2"><i class="fa-solid fa-horizontal-rule"></i></span>
+						<span id="cross" onclick="removeDestination()"><b>&times;</b></span>
+					</div>
+				</div>
+
+				<div id="destination-type">
+
+					<div id="destination-type-box">
+						<div id="destination-heading">
+							<p>CHOOSE DESTINATION TYPE</p>
+						</div>
+	
+						<div id="destination-buttons">
+							<button id="single-destination"  onClick="openSingleDestination()" class="animate pop">SINGLE DESTINATION</button>
+							<button id="multiple-destination" onClick="openMultipleDestination()" class="animate pop">MULTIPLE DESTINATION</button>
+						</div>
+					</div>
+
+				</div>
+
+	            <div id="point-to-location" onclick="pan()">
+			        <button id="pt-to-loc"></button>
+				</div>
+
+				<div id="buttons">
+
+					<button class="button animate pop delay-1" id="button1" onclick="deleteMap()">Clear Route</button>
+
+					<button class="button animate pop delay-1" id="button5" onclick="initMap()">Clear Route</button>
+
+					<button class="button animate pop" id="button2" onclick="cancelMap()">Cancel</button>
+
+					<button class="button animate pop delay-2" id="button3" onclick="proceedMap()">GO!</button>
+
+					<button class="button animate pop delay-2" id="button4" onclick="proceedMap2()">GO!</button>
+
+				</div>
+
+				<div id="greaterthan-pop-up">
+					<i class="fa fa-warning" id="warning" style="font-size:48px;color:red"></i>
+					<h1>UNABLE TO PROCEED WITH THE DISTANCE</h1>
+					<h2>Check Battery Capacity</h2>
+				</div>
+
+				<div id="lessthan-pop-up">
+					<i class="fa fa-warning" style="font-size:48px;color:red"></i>
+					<h1>CHECK BATTERY CONNECTION</h1>
+					<h1>MOTORS UNABLE TO ARM</h1>
+				</div>
+
+				<div id="distance-and-time">
+
+					<div id="dis-and-time-div">
+						<div id="dis-and-time-sub-div" class="animate pop delay-1">
+							<p>Total Distance </p> <span id="dis-time-span-1"><p id="distance"></p></span>
+						</div>
+						<div id="dis-and-time-sub-div" class="animate pop delay-4">
+							<p>Estimated Time </p> <span id="dis-time-span-2"><p id="time"></p></span>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="slide-to-takeoff">
+					<div id="page-wrap2">
+						<div id="well2">
+							<h2 id="slider-heading2"><strong id="slider2"></strong><span id="text3"> Slide to TakeOff </span></h2>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+	
+		</div>
+	</div>
+
+	<div class="area" >
+		<ul class="circles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+		</ul>
+  </div >
+
+	<script type="module" src="js/model-viewer.min.js"></script>
+	<!-- slide 1 scripts--> 
+	<script src="js/open-full-screen.js"></script>
+
+	<!-- slide 2 scripts -->
+    <script src="https://www.findlatitudeandlongitude.com/includes/javascript/leaflet-gesture-handling.min.js?v=L1.300" defer type="text/javascript"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ_mGhah8EApmFiXYYBsdBuygviP2M2EE&libraries=places"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/Main.js"></script>
+	<!-- Open Map of Single Destination or Multiple Destination -->
+	<script src="js/destination.js"></script>
+	<!-- Cancel and Ready buttons in Map-->
+	<script src="js/cancel-ready.js"></script>
+
+</body>
+
+</html>

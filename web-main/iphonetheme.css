@@ -1,0 +1,19 @@
+.locked {
+    font-size: 18px;
+    font-family: 'Microsoft Yahei', serif;      
+    background-color: rgb(219, 214, 214);   
+    color: white;
+    position: absolute;
+}
+
+.locked_handle{
+    background-image: url("../Interface/img/right_arrow.png");  
+}  
+
+
+.unlocked {
+    background-color:rgb(208, 215, 208);
+}
+.unlocked_handle{
+    background-image: url("../Interface/img/right_arrow.png");   
+}  
